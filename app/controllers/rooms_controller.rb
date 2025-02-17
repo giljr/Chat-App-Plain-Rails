@@ -7,6 +7,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @rooms = Room.all
   end
 
   def new
@@ -18,9 +19,26 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+
+    respond_to do |format|
+      if @room.save
+        UserRoom.create(room: @room, user: current_user)
+        format.turbo_stream {render turbo_stream: turbo_stream.append('rooms', partial: 'shared/room', locals: { room: @room })}
+      else
+        format.turbo_stream {render turbo_stream: turbo_stream.replace('room_form', partial: 'rooms/form', locals: { room: @room })}
+      end
+    end
   end
 
   def update
+    respond_to do |format|
+      if @room.update(room_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("room_#{@room.id}", partial: 'shared/room', locals: { room: @room }) }
+      else
+        format.html { render :edit }
+        # format.turbo_stream { render turbo_stream: turbo_stream.replace("room_#{@room.id}", partial: 'rooms/form', locals: { room: @room }) }
+      end
+    end
   end
 
   def destroy
