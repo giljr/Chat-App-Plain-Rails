@@ -1,42 +1,46 @@
-## Chat App - Forth Implementation - in Vanilla Rails - No Docker
-### Episode 4: User and Room Management
+# Chat App - Fifth Implementation - in Vanilla Rails - No Docker
 
-In this episode, we implement functionality for managing users and rooms in a Rails application. Users can create rooms, view their associated rooms, and log out. Rooms are displayed dynamically, and actions are handled using Turbo Frames for real-time updates.
-Features
+## Description
+This is Episode 5 of the Chat App series. This version introduces new features, bug fixes, and performance improvements.
 
-    User Authentication: Users can log in and log out.
-    Room Management: Users can create and view rooms associated with them.
-    Turbo Frames: Real-time updates for creating rooms and displaying user-specific content.
+## Features
+- Improved real-time messaging performance
+- Optimized database queries
+- UI enhancements
+- Better error handling
 
-Setup
+## Installation
+Clone the repository and navigate to the project directory:
 
-    Install dependencies:
-    Run the following command to install all required gems:
-
+```bash
+git clone https://github.com/yourusername/chat-app.git
+cd chat-app
+```
+Install dependencies:
+```
 bundle install
-
-Set up the database:
-
-Run the commands below to set up the database:
-
-    rails db:drop
-    rails db:migrate
-
+```
+Setup database:
+```
+rails db:create db:migrate db:seed
+```
 Start the server:
+```
+rails server
+```
+Deployment
 
-Run the server on 0.0.0.0:3001:
+To deploy, follow these steps:
+```
+git add .
+git commit -m "Prepare Chat App Episode 5 release"
+git push origin main
+git tag -a v5 -m "Chat App Episode 5 Release"
+git push origin v5
+```
+Contributing
 
-    rails s -b 0.0.0.0 -p 3001
+Feel free to submit issues and pull requests.
+License
 
-Create users and rooms:
-
-Create two users and populate their rooms as shown in the application.
-## Documentation
-
-[Documentation](https://medium.com/jungletronics/turbo-powered-chat-rooms-real-time-updates-with-hotwire-fb196de42353)
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
+This project is licensed under the MIT License.

@@ -45,6 +45,18 @@ class RoomsController < ApplicationController
     @room.destroy!
   end
 
+  def add_user
+    @room = Room.find(params[:room_id])
+    @user = User.find(params[:user_id])
+    if @user
+      UserRoom.create(room: @room, user: @user)
+    end
+  
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("room_show_#{@room.id}", partial: 'rooms/room', locals: { room: @room }) }
+    end
+  end
+
   private
     def set_room
       @room = Room.find(params.expect(:id))
