@@ -1,46 +1,28 @@
-# Chat App - Fifth Implementation - in Vanilla Rails - No Docker
+## Chat App - Sixth Implementation - in Vanilla Rails - No Docker
+### Episode 6: Real-Time Messaging with Turbo Streams
 
-## Description
-This is Episode 5 of the Chat App series. This version introduces new features, bug fixes, and performance improvements.
+Summary
 
-## Features
-- Improved real-time messaging performance
-- Optimized database queries
-- UI enhancements
-- Better error handling
+In this episode, we implemented real-time messaging using Turbo Streams in our Rails application. We enhanced the Message model to broadcast updates when a message is created, updated, or deleted. This ensures that all users receive instant updates without needing to refresh the page.
 
-## Installation
-Clone the repository and navigate to the project directory:
+Key Features:
 
-```bash
-git clone https://github.com/yourusername/chat-app.git
-cd chat-app
-```
-Install dependencies:
-```
-bundle install
-```
-Setup database:
-```
-rails db:create db:migrate db:seed
-```
-Start the server:
-```
-rails server
-```
-Deployment
+    Live message updates: Messages are broadcasted automatically when created, updated, or deleted.
 
-To deploy, follow these steps:
-```
-git add .
-git commit -m "Prepare Chat App Episode 5 release"
-git push origin main
-git tag -a v5 -m "Chat App Episode 5 Release"
-git push origin v5
-```
-Contributing
+    Turbo Streams integration: Leveraged broadcast_append_to, broadcast_replace_to, and broadcast_remove_to.
 
-Feel free to submit issues and pull requests.
-License
+    Efficient UI updates: Ensured seamless user experience by dynamically updating the message list.
 
-This project is licensed under the MIT License.
+Implementation Details:
+
+    Added after_create_commit, after_update_commit, and after_destroy_commit callbacks in Message model.
+
+    Used Turbo Streams to append new messages, update existing ones, and remove deleted messages.
+
+Updated partial views to handle real-time rendering.
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
